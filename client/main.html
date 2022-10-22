@@ -1,26 +1,15 @@
 <head>
-  <title>testT9n</title>
+    <title>t9n-meteor-2.7.3</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<h1>Welcome to meteor-t9n!</h1>
 
-  {{> hello}}
-  {{> info}}
-    {{> atForm}}
+{{> hello}}
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+    <button>Click me to change the language</button>
+    <p>You have choosen {{t 't9Name'}}</p>
+    {{> atForm}}
 </template>

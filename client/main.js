@@ -1,30 +1,22 @@
-import {Template} from 'meteor/templating';
-import {ReactiveVar} from 'meteor/reactive-var';
+import { Template } from 'meteor/templating'
+import { ReactiveVar } from 'meteor/reactive-var'
+import Tracker from "meteor/tracker"
 
-import './main.html';
-import Tracker from "meteor/tracker";
+import './main.html'
+import { T9n } from 'meteor-accounts-t9n'
 
-T9n = (require('meteor-accounts-t9n')).T9n;
-T9n.setTracker(Tracker);
-const T9N_en = require('meteor-accounts-t9n/build/en');
-T9n.map('en', T9N_en);
-const T9N_fr = require('meteor-accounts-t9n/build/fr');
-T9n.map('fr', T9N_fr);
+T9n = (require('meteor-accounts-t9n')).T9n
+Template.registerHelper('t', label => T9n.get(label));
 
-Template.hello.onCreated(function helloOnCreated() {
-    // counter starts at 0
-    this.counter = new ReactiveVar(0);
-});
+T9n.setTracker(Tracker)
+const T9N_en = require('meteor-accounts-t9n/build/en')
 
-Template.hello.helpers({
-    counter() {
-        return Template.instance().counter.get();
-    },
-});
+const T9N_fr = require('meteor-accounts-t9n/build/fr')
+T9n.map('fr', T9N_fr)
 
 Template.hello.events({
     'click button'(event, instance) {
-        // increment the counter when button is clicked
-        instance.counter.set(instance.counter.get() + 1);
+        const newLang = T9n.getLanguage() === 'fr' ? 'en' : 'fr'
+        T9n.setLanguage(newLang)
     },
-});
+})
